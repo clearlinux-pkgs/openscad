@@ -1,0 +1,11 @@
+--- openscad-openscad-2019.01-RC1/openscad.pro~	2018-12-30 20:12:30.000000000 +0000
++++ openscad-openscad-2019.01-RC1/openscad.pro	2019-01-02 15:50:47.805822645 +0000
+@@ -654,7 +654,7 @@
+   SOURCES += src/PlatformUtils-win.cc
+ }
+ 
+-isEmpty(PREFIX):PREFIX = /usr/local
++isEmpty(PREFIX):PREFIX = /usr
+ 
+ target.path = $$PREFIX/bin/
+ INSTALLS += target

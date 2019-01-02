@@ -1,0 +1,12 @@
+2019.01.rc1
+bison
+bzip2-dev
+flex
+glu-dev
+gmp-dev
+mpfr-dev
+pkgconfig(eigen3)
+pkgconfig(fontconfig)
+pkgconfig(freetype2)
+pkgconfig(harfbuzz)
+pkgconfig(libzip)

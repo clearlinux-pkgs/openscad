@@ -4,13 +4,16 @@
 #
 Name     : openscad
 Version  : 2019.01.rc1
-Release  : 1
+Release  : 3
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.01-RC1.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.01-RC1.tar.gz
 Summary  : The programmers solid 3D CAD modeller
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 OFL-1.1
+Requires: openscad-bin = %{version}-%{release}
+Requires: openscad-data = %{version}-%{release}
 Requires: openscad-license = %{version}-%{release}
+Requires: openscad-man = %{version}-%{release}
 BuildRequires : CGAL-dev
 BuildRequires : OpenCSG-dev
 BuildRequires : bison
@@ -37,6 +40,7 @@ BuildRequires : pkgconfig(freetype2)
 BuildRequires : pkgconfig(harfbuzz)
 BuildRequires : pkgconfig(libzip)
 BuildRequires : qscintilla-dev
+Patch1: build.patch
 
 %description
 Each file in this directory is a fontconfig configuration file.  Fontconfig
@@ -44,6 +48,25 @@ scans this directory, loading all files of the form [0-9][0-9]*.conf.
 These files are normally installed in /usr/share/fontconfig/conf.avail
 and then symlinked here, allowing them to be easily installed and then
 enabled/disabled by adjusting the symlinks.
+
+%package bin
+Summary: bin components for the openscad package.
+Group: Binaries
+Requires: openscad-data = %{version}-%{release}
+Requires: openscad-license = %{version}-%{release}
+Requires: openscad-man = %{version}-%{release}
+
+%description bin
+bin components for the openscad package.
+
+
+%package data
+Summary: data components for the openscad package.
+Group: Data
+
+%description data
+data components for the openscad package.
+
 
 %package license
 Summary: license components for the openscad package.
@@ -53,8 +76,17 @@ Group: Default
 license components for the openscad package.
 
 
+%package man
+Summary: man components for the openscad package.
+Group: Default
+
+%description man
+man components for the openscad package.
+
+
 %prep
 %setup -q -n openscad-openscad-2019.01-RC1
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -66,7 +98,7 @@ test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1546444278
+export SOURCE_DATE_EPOCH=1546444590
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
 cp COPYING %{buildroot}/usr/share/package-licenses/openscad/COPYING
@@ -78,9 +110,130 @@ cp testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-license
 %files
 %defattr(-,root,root,-)
 
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/openscad
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/applications/openscad.desktop
+/usr/share/metainfo/org.openscad.OpenSCAD.appdata.xml
+/usr/share/mime-packages/openscad.xml
+/usr/share/openscad/color-schemes/editor/dark-background.json
+/usr/share/openscad/color-schemes/editor/light-background.json
+/usr/share/openscad/color-schemes/editor/monokai.json
+/usr/share/openscad/color-schemes/editor/solarized-dark.json
+/usr/share/openscad/color-schemes/editor/solarized-light.json
+/usr/share/openscad/color-schemes/editor/tomorrow-night.json
+/usr/share/openscad/color-schemes/editor/tomorrow.json
+/usr/share/openscad/color-schemes/editor/visualstudio.json
+/usr/share/openscad/color-schemes/readme.txt
+/usr/share/openscad/color-schemes/render/beforedawn.json
+/usr/share/openscad/color-schemes/render/deepocean.json
+/usr/share/openscad/color-schemes/render/metallic.json
+/usr/share/openscad/color-schemes/render/monotone.json
+/usr/share/openscad/color-schemes/render/nature.json
+/usr/share/openscad/color-schemes/render/solarized.json
+/usr/share/openscad/color-schemes/render/starnight.json
+/usr/share/openscad/color-schemes/render/sunset.json
+/usr/share/openscad/color-schemes/render/tomorrow-night.json
+/usr/share/openscad/color-schemes/render/tomorrow.json
+/usr/share/openscad/examples/Advanced/GEB.scad
+/usr/share/openscad/examples/Advanced/animation.scad
+/usr/share/openscad/examples/Advanced/assert.scad
+/usr/share/openscad/examples/Advanced/children.scad
+/usr/share/openscad/examples/Advanced/children_indexed.scad
+/usr/share/openscad/examples/Advanced/module_recursion.scad
+/usr/share/openscad/examples/Advanced/offset.scad
+/usr/share/openscad/examples/Advanced/surface_image.png
+/usr/share/openscad/examples/Advanced/surface_image.scad
+/usr/share/openscad/examples/Basics/CSG-modules.scad
+/usr/share/openscad/examples/Basics/CSG.scad
+/usr/share/openscad/examples/Basics/LetterBlock.scad
+/usr/share/openscad/examples/Basics/linear_extrude.scad
+/usr/share/openscad/examples/Basics/logo.scad
+/usr/share/openscad/examples/Basics/logo_and_text.scad
+/usr/share/openscad/examples/Basics/projection.scad
+/usr/share/openscad/examples/Basics/projection.stl
+/usr/share/openscad/examples/Basics/rotate_extrude.scad
+/usr/share/openscad/examples/Basics/text_on_cube.scad
+/usr/share/openscad/examples/COPYING-CC0.txt
+/usr/share/openscad/examples/Functions/echo.scad
+/usr/share/openscad/examples/Functions/functions.scad
+/usr/share/openscad/examples/Functions/list_comprehensions.scad
+/usr/share/openscad/examples/Functions/polygon_areas.scad
+/usr/share/openscad/examples/Functions/recursion.scad
+/usr/share/openscad/examples/Old/example001.scad
+/usr/share/openscad/examples/Old/example002.scad
+/usr/share/openscad/examples/Old/example003.scad
+/usr/share/openscad/examples/Old/example004.scad
+/usr/share/openscad/examples/Old/example005.scad
+/usr/share/openscad/examples/Old/example006.scad
+/usr/share/openscad/examples/Old/example007.dxf
+/usr/share/openscad/examples/Old/example007.scad
+/usr/share/openscad/examples/Old/example008.dxf
+/usr/share/openscad/examples/Old/example008.scad
+/usr/share/openscad/examples/Old/example009.dxf
+/usr/share/openscad/examples/Old/example009.scad
+/usr/share/openscad/examples/Old/example010.dat
+/usr/share/openscad/examples/Old/example010.scad
+/usr/share/openscad/examples/Old/example011.scad
+/usr/share/openscad/examples/Old/example012.scad
+/usr/share/openscad/examples/Old/example012.stl
+/usr/share/openscad/examples/Old/example013.dxf
+/usr/share/openscad/examples/Old/example013.scad
+/usr/share/openscad/examples/Old/example014.scad
+/usr/share/openscad/examples/Old/example015.scad
+/usr/share/openscad/examples/Old/example016.scad
+/usr/share/openscad/examples/Old/example016.stl
+/usr/share/openscad/examples/Old/example017.scad
+/usr/share/openscad/examples/Old/example018.scad
+/usr/share/openscad/examples/Old/example019.scad
+/usr/share/openscad/examples/Old/example020.scad
+/usr/share/openscad/examples/Old/example021.scad
+/usr/share/openscad/examples/Old/example022.scad
+/usr/share/openscad/examples/Old/example023.scad
+/usr/share/openscad/examples/Old/example024.scad
+/usr/share/openscad/examples/Parametric/candleStand.json
+/usr/share/openscad/examples/Parametric/candleStand.scad
+/usr/share/openscad/examples/Parametric/sign.json
+/usr/share/openscad/examples/Parametric/sign.scad
+/usr/share/openscad/examples/examples.json
+/usr/share/openscad/fonts/05-osx-fonts.conf
+/usr/share/openscad/fonts/10-liberation.conf
+/usr/share/openscad/fonts/Liberation-2.00.1/AUTHORS
+/usr/share/openscad/fonts/Liberation-2.00.1/ChangeLog
+/usr/share/openscad/fonts/Liberation-2.00.1/LICENSE
+/usr/share/openscad/fonts/Liberation-2.00.1/README
+/usr/share/openscad/fonts/Liberation-2.00.1/TODO
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationMono-Bold.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationMono-BoldItalic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationMono-Italic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationMono-Regular.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSans-Bold.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSans-BoldItalic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSans-Italic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSans-Regular.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSerif-Bold.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSerif-BoldItalic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSerif-Italic.ttf
+/usr/share/openscad/fonts/Liberation-2.00.1/ttf/LiberationSerif-Regular.ttf
+/usr/share/openscad/locale/cs/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/de/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/es/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/fr/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/pl/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/ru/LC_MESSAGES/openscad.mo
+/usr/share/openscad/locale/uk/LC_MESSAGES/openscad.mo
+/usr/share/pixmaps/openscad.png
+
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/openscad/COPYING
 /usr/share/package-licenses/openscad/examples_COPYING-CC0.txt
 /usr/share/package-licenses/openscad/fonts_Liberation-2.00.1_LICENSE
 /usr/share/package-licenses/openscad/testdata_ttf_liberation-2.00.1_LICENSE
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/openscad.1

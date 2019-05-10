@@ -6,3 +6,4 @@ CGAL-dev
 buildreq-kde
 OpenCSG-dev
 libxml2-dev
+double-conversion-dev

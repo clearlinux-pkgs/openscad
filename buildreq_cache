@@ -1,4 +1,4 @@
-2019.01.rc1
+2019.05
 bison
 bzip2-dev
 flex
@@ -9,4 +9,5 @@ pkgconfig(eigen3)
 pkgconfig(fontconfig)
 pkgconfig(freetype2)
 pkgconfig(harfbuzz)
+pkgconfig(lib3MF)
 pkgconfig(libzip)

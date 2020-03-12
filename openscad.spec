@@ -4,12 +4,12 @@
 #
 Name     : openscad
 Version  : 2019.05
-Release  : 6
+Release  : 7
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
-Summary  : The programmers solid 3D CAD modeller
+Summary  : No detailed summary available
 Group    : Development/Tools
-License  : CC0-1.0 GPL-2.0 MIT OFL-1.1
+License  : CC0-1.0 GPL-2.0 MIT OFL-1.1 Python-2.0
 Requires: openscad-bin = %{version}-%{release}
 Requires: openscad-data = %{version}-%{release}
 Requires: openscad-license = %{version}-%{release}
@@ -42,13 +42,13 @@ BuildRequires : pkgconfig(harfbuzz)
 BuildRequires : pkgconfig(libzip)
 BuildRequires : qscintilla-dev
 Patch1: build.patch
+Patch2: fix-for-boost.patch
 
 %description
-Each file in this directory is a fontconfig configuration file.  Fontconfig
-scans this directory, loading all files of the form [0-9][0-9]*.conf.
-These files are normally installed in /usr/share/fontconfig/conf.avail
-and then symlinked here, allowing them to be easily installed and then
-enabled/disabled by adjusting the symlinks.
+JavaScript Libraries:
+Rainbow by Craig Campbell
+* https://github.com/ccampbell/rainbow
+* Apache License, Version 2.0
 
 %package bin
 Summary: bin components for the openscad package.
@@ -86,26 +86,30 @@ man components for the openscad package.
 
 %prep
 %setup -q -n openscad-openscad-2019.05
+cd %{_builddir}/openscad-openscad-2019.05
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-%qmake -config ltcg
+export LANG=C.UTF-8
+export GCC_IGNORE_WERROR=1
+%qmake -config ltcg -config fat-static-lto
 test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1557494781
+export SOURCE_DATE_EPOCH=1584045893
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
-cp COPYING %{buildroot}/usr/share/package-licenses/openscad/COPYING
-cp examples/COPYING-CC0.txt %{buildroot}/usr/share/package-licenses/openscad/examples_COPYING-CC0.txt
-cp fonts/Liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/fonts_Liberation-2.00.1_LICENSE
-cp src/libsvg/LICENSE %{buildroot}/usr/share/package-licenses/openscad/src_libsvg_LICENSE
-cp testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/testdata_ttf_liberation-2.00.1_LICENSE
+cp %{_builddir}/openscad-openscad-2019.05/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30
+cp %{_builddir}/openscad-openscad-2019.05/doc/Python-LICENSE.txt %{buildroot}/usr/share/package-licenses/openscad/de31484da051d38c60d373b7761c6c9a8e68a157
+cp %{_builddir}/openscad-openscad-2019.05/examples/COPYING-CC0.txt %{buildroot}/usr/share/package-licenses/openscad/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+cp %{_builddir}/openscad-openscad-2019.05/fonts/Liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2
+cp %{_builddir}/openscad-openscad-2019.05/src/libsvg/LICENSE %{buildroot}/usr/share/package-licenses/openscad/9b61c40d214dea91f7e62b90c80ac5dfb2d207a4
+cp %{_builddir}/openscad-openscad-2019.05/testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2
 %make_install
 
 %files
@@ -230,11 +234,11 @@ cp testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-license
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/openscad/COPYING
-/usr/share/package-licenses/openscad/examples_COPYING-CC0.txt
-/usr/share/package-licenses/openscad/fonts_Liberation-2.00.1_LICENSE
-/usr/share/package-licenses/openscad/src_libsvg_LICENSE
-/usr/share/package-licenses/openscad/testdata_ttf_liberation-2.00.1_LICENSE
+/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2
+/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30
+/usr/share/package-licenses/openscad/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+/usr/share/package-licenses/openscad/9b61c40d214dea91f7e62b90c80ac5dfb2d207a4
+/usr/share/package-licenses/openscad/de31484da051d38c60d373b7761c6c9a8e68a157
 
 %files man
 %defattr(0644,root,root,0755)

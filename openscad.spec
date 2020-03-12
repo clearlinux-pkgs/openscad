@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2019.05
-Release  : 5
+Release  : 6
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Summary  : The programmers solid 3D CAD modeller

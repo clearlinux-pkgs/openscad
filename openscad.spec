@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2019.05
-Release  : 7
+Release  : 8
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Summary  : No detailed summary available
@@ -41,8 +41,9 @@ BuildRequires : pkgconfig(freetype2)
 BuildRequires : pkgconfig(harfbuzz)
 BuildRequires : pkgconfig(libzip)
 BuildRequires : qscintilla-dev
-Patch1: build.patch
-Patch2: fix-for-boost.patch
+Patch1: 0001-Set-PREFIX-to-usr.patch
+Patch2: 0002-Add-missing-header-bootlegged-by-Boost-1.72.patch
+Patch3: 0003-Remove-unneeded-import-of-boost-header.patch
 
 %description
 JavaScript Libraries:
@@ -89,6 +90,7 @@ man components for the openscad package.
 cd %{_builddir}/openscad-openscad-2019.05
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -101,7 +103,7 @@ test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1584045893
+export SOURCE_DATE_EPOCH=1592508477
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
 cp %{_builddir}/openscad-openscad-2019.05/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30

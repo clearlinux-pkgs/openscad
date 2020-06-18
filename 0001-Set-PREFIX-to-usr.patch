@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Arjan van de Ven <arjan@linux.intel.com>
+Date: Wed, 2 Jan 2019 15:51:30 +0000
+Subject: [PATCH] Set PREFIX to /usr
+
+Upstream-Status: Inappropriate [distro-specific]
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ openscad.pro | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/openscad.pro b/openscad.pro
+index 2d190ddc..815db843 100755
+--- a/openscad.pro
++++ b/openscad.pro
+@@ -681,7 +681,7 @@ win* {
+   SOURCES += src/PlatformUtils-win.cc
+ }
+ 
+-isEmpty(PREFIX):PREFIX = /usr/local
++isEmpty(PREFIX):PREFIX = /usr
+ 
+ target.path = $$PREFIX/bin/
+ INSTALLS += target

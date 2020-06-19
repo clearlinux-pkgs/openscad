@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2019.05
-Release  : 8
+Release  : 9
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ Requires: openscad-man = %{version}-%{release}
 BuildRequires : CGAL-dev
 BuildRequires : OpenCSG-dev
 BuildRequires : bison
+BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-qmake
@@ -103,7 +104,7 @@ test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1592508477
+export SOURCE_DATE_EPOCH=1592608636
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
 cp %{_builddir}/openscad-openscad-2019.05/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30

@@ -1,9 +1,10 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-qscintilla-dev
-glew-dev
 CGAL-dev
-buildreq-kde
 OpenCSG-dev
-libxml2-dev
+boost-dev
+buildreq-kde
 double-conversion-dev
+glew-dev
+libxml2-dev
+qscintilla-dev

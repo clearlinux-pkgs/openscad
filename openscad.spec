@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2019.05
-Release  : 9
+Release  : 10
 URL      : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2019.05/openscad-2019.05.tar.gz
 Summary  : No detailed summary available

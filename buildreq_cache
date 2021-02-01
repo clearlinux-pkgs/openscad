@@ -1,13 +1,12 @@
-2019.05
+2021.01
 bison
-bzip2-dev
 flex
 glu-dev
 gmp-dev
 mpfr-dev
+pkgconfig(cairo)
 pkgconfig(eigen3)
 pkgconfig(fontconfig)
 pkgconfig(freetype2)
 pkgconfig(harfbuzz)
-pkgconfig(lib3MF)
 pkgconfig(libzip)

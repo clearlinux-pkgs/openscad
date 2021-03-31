@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2021.01
-Release  : 11
+Release  : 12
 URL      : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Summary  : No detailed summary available
@@ -100,7 +100,7 @@ test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1612204784
+export SOURCE_DATE_EPOCH=1617214549
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
 cp %{_builddir}/openscad-openscad-2021.01/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30

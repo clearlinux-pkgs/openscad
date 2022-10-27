@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2021.01
-Release  : 12
+Release  : 13
 URL      : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Summary  : No detailed summary available

@@ -4,7 +4,7 @@
 #
 Name     : openscad
 Version  : 2021.01
-Release  : 13
+Release  : 14
 URL      : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Source0  : https://github.com/openscad/openscad/archive/openscad-2021.01/openscad-2021.01.tar.gz
 Summary  : No detailed summary available
@@ -100,15 +100,15 @@ test -r config.log && cat config.log
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1617214549
+export SOURCE_DATE_EPOCH=1666889716
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openscad
-cp %{_builddir}/openscad-openscad-2021.01/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30
-cp %{_builddir}/openscad-openscad-2021.01/doc/Python-LICENSE.txt %{buildroot}/usr/share/package-licenses/openscad/de31484da051d38c60d373b7761c6c9a8e68a157
-cp %{_builddir}/openscad-openscad-2021.01/examples/COPYING-CC0.txt %{buildroot}/usr/share/package-licenses/openscad/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
-cp %{_builddir}/openscad-openscad-2021.01/fonts/Liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2
-cp %{_builddir}/openscad-openscad-2021.01/src/libsvg/LICENSE %{buildroot}/usr/share/package-licenses/openscad/9b61c40d214dea91f7e62b90c80ac5dfb2d207a4
-cp %{_builddir}/openscad-openscad-2021.01/testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2
+cp %{_builddir}/openscad-openscad-%{version}/COPYING %{buildroot}/usr/share/package-licenses/openscad/2436f85b95492164bda1fc52ecc05d105e959f30 || :
+cp %{_builddir}/openscad-openscad-%{version}/doc/Python-LICENSE.txt %{buildroot}/usr/share/package-licenses/openscad/de31484da051d38c60d373b7761c6c9a8e68a157 || :
+cp %{_builddir}/openscad-openscad-%{version}/examples/COPYING-CC0.txt %{buildroot}/usr/share/package-licenses/openscad/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
+cp %{_builddir}/openscad-openscad-%{version}/fonts/Liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2 || :
+cp %{_builddir}/openscad-openscad-%{version}/src/libsvg/LICENSE %{buildroot}/usr/share/package-licenses/openscad/9b61c40d214dea91f7e62b90c80ac5dfb2d207a4 || :
+cp %{_builddir}/openscad-openscad-%{version}/testdata/ttf/liberation-2.00.1/LICENSE %{buildroot}/usr/share/package-licenses/openscad/0898cb73de9283d38e6f4cef45ce79efbfafb0b2 || :
 %make_install
 
 %files
